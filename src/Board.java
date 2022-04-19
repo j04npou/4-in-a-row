@@ -205,6 +205,19 @@ public class Board {
             player = 0;
         }
 
+        // Comprovam si queden moviments possibles
+        boolean availMoves = false;
+
+        for (int x = 0; x < board.length; x++) {
+            if (board[x][0] == 0) {
+                availMoves = true;
+                break;
+            }
+        }
+        if (!availMoves) {
+            return -1;
+        }
+
         // Si no hi ha guanyador retornam 0.
         return 0;
     }
