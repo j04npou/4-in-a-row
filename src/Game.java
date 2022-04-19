@@ -22,7 +22,7 @@ public class Game {
     }
 
     private static void onePlayerGame() {
-
+        System.out.println("⛔ This game mode is not implemented yet ⛔");
     }
 
     private static void twoPlayerGame() {
