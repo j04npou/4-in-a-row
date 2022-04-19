@@ -26,4 +26,21 @@ public class Board {
         }
         System.out.println(border.repeat(board.length+2));
     }
+
+    public static boolean putTile(int column, int player) {
+        // Si la columna está plena no es pot colocar fitxa.
+        if (board[column][0] != 0) {
+            return false;
+        }
+        // Recorrem la columna i colocam fitxa a la darrera casella buida.
+        for (int i = 0; i < board[0].length; i++) {
+            if (board[column][i] != 0) {
+                board[column][i-1] = player;
+                return true;
+            }
+        }
+        // Si tota la columna está buida colocam la fitxa a la darrera casella.
+        board[column][board[0].length-1] = player;
+        return true;
+    }
 }
