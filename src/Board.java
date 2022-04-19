@@ -69,4 +69,143 @@ public class Board {
 
         return column;
     }
+
+    public int checkWinner() {
+        int player = 0;
+        int counter = 0;
+
+        // Comprovam si tenim guanyador a les horitzontals.
+        for (int y = 0; y < board[0].length; y++) {
+            for (int x = 0; x < board.length; x++) {
+                if (board[x][y] == 0){
+                    counter = 0;
+                } else if (board[x][y] == player) {
+                    counter++;
+                } else {
+                    counter = 1;
+                }
+                player = board[x][y];
+
+                if (counter >= 4) {
+                    return player;
+                }
+            }
+            counter = 0;
+            player = 0;
+        }
+
+        // Comprovam si tenim guanyador a les verticals.
+        for (int x = 0; x < board.length; x++) {
+            for (int y = 0; y < board[0].length; y++) {
+                if (board[x][y] == 0){
+                    counter = 0;
+                } else if (board[x][y] == player) {
+                    counter++;
+                } else {
+                    counter = 1;
+                }
+                player = board[x][y];
+
+                if (counter >= 4) {
+                    return player;
+                }
+            }
+            counter = 0;
+            player = 0;
+        }
+
+        // Comprovam si tenim guanyador a la diagonals descendents.
+
+        // Diagonals de y=0 fins a y=6-3
+        for (int y = 0; y < board[0].length-3; y++) {
+            for (int x = 0; x < board.length; x++) {
+                if (y+x >= board[0].length)
+                    break;
+                if (board[x][y+x] == 0){
+                    counter = 0;
+                } else if (board[x][y+x] == player) {
+                    counter++;
+                } else {
+                    counter = 1;
+                }
+                player = board[x][y+x];
+
+                if (counter >= 4) {
+                    return player;
+                }
+            }
+            counter = 0;
+            player = 0;
+        }
+        // Diagonals de x=1 fins a x=7-3
+        for (int x = 1; x < board.length-3; x++) {
+            for (int y = 0; y < board[0].length; y++) {
+                if (y+x >= board.length)
+                    break;
+                if (board[x+y][y] == 0){
+                    counter = 0;
+                } else if (board[x+y][y] == player) {
+                    counter++;
+                } else {
+                    counter = 1;
+                }
+                player = board[x+y][y];
+
+                if (counter >= 4) {
+                    return player;
+                }
+            }
+            counter = 0;
+            player = 0;
+        }
+
+        // Comprovam si tenim guanyador a la diagonals ascendents.
+
+        // Diagonals de y=3 fins a y=6
+        for (int y = 3; y < board[0].length; y++) {
+            for (int x = 0; x < board.length; x++) {
+                if (y-x < 0)
+                    break;
+                if (board[x][y-x] == 0){
+                    counter = 0;
+                } else if (board[x][y-x] == player) {
+                    counter++;
+                } else {
+                    counter = 1;
+                }
+                player = board[x][y-x];
+
+                if (counter >= 4) {
+                    return player;
+                }
+            }
+            counter = 0;
+            player = 0;
+        }
+        // Diagonals de x=1 fins a x=7-3
+        int yTotal = board[0].length - 1;
+        for (int x = 1; x < board.length-3; x++) {
+            for (int y = 0; y < board[0].length; y++) {
+                if (x+y >= board.length)
+                    break;
+                if (board[x+y][yTotal-y] == 0){
+                    counter = 0;
+                } else if (board[x+y][yTotal-y] == player) {
+                    counter++;
+                } else {
+                    counter = 1;
+                }
+                player = board[x+y][yTotal-y];
+
+                if (counter >= 4) {
+                    return player;
+                }
+            }
+            counter = 0;
+            player = 0;
+        }
+
+        // Si no hi ha guanyador retornam 0.
+        return 0;
+    }
 }
