@@ -33,7 +33,7 @@ public class Game {
         int player = 1;
         int column = twoP.askColumn(player);
 
-        while (winner != 0 || column != 0 ) {
+        while (winner == 0 && column != 0 ) {
             if (twoP.putTile(column-1, player)) {
                 twoP.printBoard();
 
@@ -45,7 +45,43 @@ public class Game {
             } else {
                 System.out.println("⛔ This row is full, please select another row. ⛔");
             }
-            column = twoP.askColumn(player);
+
+            winner = twoP.checkWinner();
+            if (winner == 0) {
+                column = twoP.askColumn(player);
+            }
+        }
+        switch (winner) {
+            case 1:
+                System.out.println("  _____  _                         __            _           \n" +
+                        " |  __ \\| |                       /_ |          (_)          \n" +
+                        " | |__) | | __ _ _   _  ___ _ __   | | __      ___ _ __  ___ \n" +
+                        " |  ___/| |/ _` | | | |/ _ \\ '__|  | | \\ \\ /\\ / / | '_ \\/ __|\n" +
+                        " | |    | | (_| | |_| |  __/ |     | |  \\ V  V /| | | | \\__ \\\n" +
+                        " |_|    |_|\\__,_|\\__, |\\___|_|     |_|   \\_/\\_/ |_|_| |_|___/\n" +
+                        "                  __/ |                                      \n" +
+                        "                 |___/                                       ");
+                break;
+            case 2:
+                System.out.println("  _____  _                         ___             _           \n" +
+                        " |  __ \\| |                       |__ \\           (_)          \n" +
+                        " | |__) | | __ _ _   _  ___ _ __     ) | __      ___ _ __  ___ \n" +
+                        " |  ___/| |/ _` | | | |/ _ \\ '__|   / /  \\ \\ /\\ / / | '_ \\/ __|\n" +
+                        " | |    | | (_| | |_| |  __/ |     / /_   \\ V  V /| | | | \\__ \\\n" +
+                        " |_|    |_|\\__,_|\\__, |\\___|_|    |____|   \\_/\\_/ |_|_| |_|___/\n" +
+                        "                  __/ |                                        \n" +
+                        "                 |___/                                         ");
+                break;
+            case -1:
+                System.out.println("  _____                     \n" +
+                        " |  __ \\                    \n" +
+                        " | |  | |_ __ __ ___      __\n" +
+                        " | |  | | '__/ _` \\ \\ /\\ / /\n" +
+                        " | |__| | | | (_| |\\ V  V / \n" +
+                        " |_____/|_|  \\__,_| \\_/\\_/  \n" +
+                        "                            \n" +
+                        "                            ");
+                break;
         }
     }
 
