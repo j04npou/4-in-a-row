@@ -28,6 +28,25 @@ public class Game {
     private static void twoPlayerGame() {
         Board twoP = new Board();
         twoP.printBoard();
+
+        int winner = 0;
+        int player = 1;
+        int column = twoP.askColumn(player);
+
+        while (winner != 0 || column != 0 ) {
+            if (twoP.putTile(column-1, player)) {
+                twoP.printBoard();
+
+                if (player == 1) {
+                    player = 2;
+                } else {
+                    player = 1;
+                }
+            } else {
+                System.out.println("⛔ This row is full, please select another row. ⛔");
+            }
+            column = twoP.askColumn(player);
+        }
     }
 
     public static void main(String[] args) {
